@@ -8,9 +8,7 @@ var userGuessSoFar = [];
 var winSound = document.createElement('audio');
 document.body.appendChild(winSound);
 winSound.src = 'assets/sounds/win.wav'
-var loseSound = document.createElement('audio');
-document.body.appendChild(winSound);
-loseSound.src = 'assets/sounds/lose.wav'
+
 
 // Reset for newgames.
 function reset() {
@@ -34,14 +32,16 @@ function wins() {
 function loses() {
     losePoints++;
     document.getElementById("loses").innerHTML = losePoints;
-    alert(" You lose !! ");
-    loseSound.play();
     reset();
 }
 function fail(userGuess) {
     chances--;
     document.getElementById("chances").innerHTML = chances;
     userGuessSoFar.push(userGuess);
+    if ( chances === 0 ) {
+      document.getElementById("chances").innerHTML = chances;
+      loses();
+    } 
     blank();
 }
 
@@ -64,9 +64,6 @@ document.onkeypress = function(event) {
   var userGuess = event.key;
   if (userGuess === computerGuess) {
     wins();
-  } 
-  else if ( chances === 0 ) {
-    loses();
   } 
   else {
     fail(userGuess);

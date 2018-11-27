@@ -17,6 +17,7 @@ function reset() {
     chances = 9;
     userGuessSoFar = [];
     computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    document.getElementById("chances").innerHTML = chances;
     document.getElementById("guessesSoFar").innerHTML = userGuessSoFar;
     document.getElementById("wins").innerHTML = winPoints;
     document.getElementById("loses").innerHTML = losePoints;
